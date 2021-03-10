@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="uwp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:uwp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="146" Margin="135,140,0,0" Text="olita jeje" TextWrapping="Wrap" VerticalAlignment="Top" Width="1070" FontSize="72" FontWeight="Normal"/>
+        <Button x:Name="button" Content="click" Height="74" Margin="135,873,0,0" VerticalAlignment="Top" Width="221" FontSize="36" Click="a"/>
+        <ComboBox x:Name="comboBox" Height="257" Margin="0,565,0,0" Width="1135" HorizontalAlignment="Center">
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="75" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+        </ComboBox>
+        <Button x:Name="button1" Content="Button" Height="84" Margin="1186,55,0,0" VerticalAlignment="Top" Width="245" FontSize="36"/>
+        <ProgressBar HorizontalAlignment="Left" Height="69" Margin="41,28,0,0" VerticalAlignment="Top" Width="575"/>
+
+    </Grid>
+</Page>
