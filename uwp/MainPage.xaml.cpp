@@ -24,10 +24,14 @@ using namespace Windows::UI::Xaml::Navigation;
 MainPage::MainPage()
 {
 	InitializeComponent();
+	
 }
 
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
+	textBox1->Text = "osoaosoo";
+	//ContentDialog a;
 	
 }
+
