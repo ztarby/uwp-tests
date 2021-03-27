@@ -9,17 +9,21 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="103" Margin="244,174,0,0" Text="olita jeje" TextWrapping="Wrap" VerticalAlignment="Top" Width="733" FontSize="48" FontWeight="Normal"/>
         <Button x:Name="button" Content="click" Height="49" Margin="46,416,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Click="a"/>
-        <Button x:Name="button1" Content="Button" Height="49" Margin="46,276,0,0" VerticalAlignment="Top" Width="134" FontSize="24"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="245,352,0,0" Text="pon aqui tu basura" TextWrapping="Wrap" VerticalAlignment="Top" Height="357" Width="752"/>
+        <Button x:Name="button1" Content="Button" Height="120" Margin="46,276,0,0" VerticalAlignment="Top" Width="134" FontSize="24"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="245,352,0,0" Text="pon aqui tu basura" TextWrapping="Wrap" VerticalAlignment="Top" Height="357" Width="752" PlaceholderText="asa"/>
         <Border BorderThickness="1" BorderBrush="Black" d:IsHidden="True"/>
         <AppBarButton x:Name="appBarButton" Height="63" Icon="Page" Label="New file (?" Margin="78,54,0,0" Width="88" RenderTransformOrigin="0.513,0.561">
             <AppBarButton.Flyout>
-                <Flyout>
-                    <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="36" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"><Button x:Name="button2" Content="Button" Height="30" VerticalAlignment="Top" Width="86"/></TextBlock>
-                </Flyout>
+                
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="a" Click="ClickA">
+                    </MenuFlyoutItem>
+                </MenuFlyout>
             </AppBarButton.Flyout>
+
         </AppBarButton>
         <CommandBar HorizontalAlignment="Left" Height="71" Margin="245,64,0,0" Width="850">
             <CommandBar.Content>
@@ -29,6 +33,6 @@
             <AppBarButton Icon="Cancel" Label="me too lol"/>
         </CommandBar>
 
-
+        <ContentDialog x:Name="dialogbox1" Content="a" Title="as" PrimaryButtonText="as"/>
     </Grid>
 </Page>

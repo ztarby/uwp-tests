@@ -19,5 +19,6 @@ namespace uwp
 
 	private:
 		void a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }
