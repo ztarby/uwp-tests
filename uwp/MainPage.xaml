@@ -33,6 +33,17 @@
             <AppBarButton Icon="Cancel" Label="me too lol"/>
         </CommandBar>
 
-        <ContentDialog x:Name="dialogbox1" Content="a" Title="as" PrimaryButtonText="as"/>
+        <ContentDialog x:Name="dialogbox1" Content="a" Title="as" PrimaryButtonText="as" d:IsHidden="True"/>
+        <ContentDialog x:Name="dialogbox_pro1"  PrimaryButtonText="ok" Title="a">
+            <ContentDialog.TitleTemplate>
+                <DataTemplate>
+                    <TextBlock> js</TextBlock>
+                </DataTemplate> 
+            </ContentDialog.TitleTemplate>
+            <StackPanel>
+                <TextBlock> elije</TextBlock>
+                <TextBox x:Name="filename"></TextBox>
+            </StackPanel>
+        </ContentDialog>
     </Grid>
 </Page>

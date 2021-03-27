@@ -38,6 +38,7 @@ void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventAr
 
 
 void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-	dialogbox1->ShowAsync();
+{ 
+	dialogbox_pro1->ShowAsync();
+	
 }
