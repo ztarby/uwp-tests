@@ -17,9 +17,9 @@
         <Border BorderThickness="1" BorderBrush="Black" d:IsHidden="True"/>
         <AppBarButton x:Name="appBarButton" Height="63" Icon="Page" Label="New file (?" Margin="78,54,0,0" Width="88" RenderTransformOrigin="0.513,0.561">
             <AppBarButton.Flyout>
-                
+
                 <MenuFlyout>
-                    <MenuFlyoutItem Text="a" Click="ClickA">
+                    <MenuFlyoutItem Text="new file" Click="ClickA">
                     </MenuFlyoutItem>
                 </MenuFlyout>
             </AppBarButton.Flyout>
@@ -34,16 +34,17 @@
         </CommandBar>
 
         <ContentDialog x:Name="dialogbox1" Content="a" Title="as" PrimaryButtonText="as" d:IsHidden="True"/>
-        <ContentDialog x:Name="dialogbox_pro1"  PrimaryButtonText="ok" Title="a">
+        <ContentDialog x:Name="dialogbox_pro1"  PrimaryButtonText="ok" Title="a" PrimaryButtonClick="OnClickPrm1" d:IsHidden="True">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
-                    <TextBlock> js</TextBlock>
-                </DataTemplate> 
+                    <TextBlock> New file</TextBlock>
+                </DataTemplate>
             </ContentDialog.TitleTemplate>
             <StackPanel>
-                <TextBlock> elije</TextBlock>
+                <TextBlock> choose name</TextBlock>
                 <TextBox x:Name="filename"></TextBox>
             </StackPanel>
         </ContentDialog>
+        <TextBlock x:Name="directorio" HorizontalAlignment="Left" Margin="245,261,0,0" Text="how are you jsjsj" TextWrapping="Wrap" VerticalAlignment="Top" IsTextSelectionEnabled="True"/>
     </Grid>
 </Page>

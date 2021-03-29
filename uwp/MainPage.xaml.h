@@ -20,5 +20,7 @@ namespace uwp
 	private:
 		void a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnClickPrm1(Windows::UI::Xaml::Controls::ContentDialog^ sender, Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs^ args);
+		
 	};
 }

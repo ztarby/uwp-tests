@@ -19,6 +19,8 @@ using namespace Windows::UI::Xaml::Input;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
 
+using namespace Windows::Storage;
+
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
 
 MainPage::MainPage()
@@ -31,8 +33,7 @@ MainPage::MainPage()
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	textBox1->Text = "osoaosoo";
-	//ContentDialog a;
-	//ContentDialog^ e = ref new ContentDialog(); 
+	
 }
 
 
@@ -41,4 +42,16 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 { 
 	dialogbox_pro1->ShowAsync();
 	
+}
+
+
+void uwp::MainPage::OnClickPrm1(Windows::UI::Xaml::Controls::ContentDialog^ sender, Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs^ args)
+{
+	String^ a = filename->Text;
+
+	StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
+	concurrency::create_task(storageFolder->CreateFileAsync(a, CreationCollisionOption::ReplaceExisting));
+
+	textBlock->Text = a;
+	directorio->Text = storageFolder->Path;
 }
