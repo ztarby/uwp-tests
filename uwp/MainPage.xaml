@@ -22,7 +22,7 @@
                     <MenuFlyoutItem Text="new file" Click="ClickA">
                     </MenuFlyoutItem>
 
-                    <MenuFlyoutItem Text="open file"></MenuFlyoutItem>
+                    <MenuFlyoutItem Text="open file" Click="OnClickOpenFile"></MenuFlyoutItem>
 
                     <MenuFlyoutItem Text="save file" Click="OnClickSaveFile"></MenuFlyoutItem>
                     
@@ -51,5 +51,13 @@
             </StackPanel>
         </ContentDialog>
         <TextBlock x:Name="directorio" HorizontalAlignment="Left" Margin="245,261,0,0" Text="how are you jsjsj" TextWrapping="Wrap" VerticalAlignment="Top" IsTextSelectionEnabled="True"/>
+
+        <ContentDialog x:Name="open_file_popup" Title="Open file" PrimaryButtonText="open" SecondaryButtonText="cancel" PrimaryButtonClick="OnClickOpenPopup">
+            <StackPanel>
+                <TextBlock> choose name</TextBlock>
+                <TextBox x:Name="filename2"></TextBox>
+            </StackPanel>
+        </ContentDialog>
+        
     </Grid>
 </Page>

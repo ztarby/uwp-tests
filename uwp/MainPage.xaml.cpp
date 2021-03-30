@@ -79,3 +79,20 @@ void uwp::MainPage::OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml:
 			});
 	}
 }
+
+
+void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	open_file_popup->ShowAsync();
+}
+
+
+void uwp::MainPage::OnClickOpenPopup(Windows::UI::Xaml::Controls::ContentDialog^ sender, Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs^ args)
+{
+	mainfilename = filename2->Text;
+
+	StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
+
+	textBlock->Text = mainfilename;
+	directorio->Text = storageFolder->Path;
+}
