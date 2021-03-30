@@ -74,7 +74,7 @@ void uwp::MainPage::OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml:
 		StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
 		concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([ffile](StorageFile^ sampleFile)
 			{
-				
+			
 				concurrency::create_task(FileIO::WriteTextAsync(sampleFile, ffile));
 			});
 	}
@@ -90,9 +90,23 @@ void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml:
 void uwp::MainPage::OnClickOpenPopup(Windows::UI::Xaml::Controls::ContentDialog^ sender, Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs^ args)
 {
 	mainfilename = filename2->Text;
-
+	
 	StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
 
+	
 	textBlock->Text = mainfilename;
 	directorio->Text = storageFolder->Path;
+	textBox1->Text = "file text here";
+	
 }
+
+
+/*
+String^ test() {
+	StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
+	concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([](StorageFile^ sampleFile)
+		{
+			return FileIO::ReadTextAsync(sampleFile);
+		});
+}
+*/

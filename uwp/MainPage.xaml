@@ -25,17 +25,18 @@
                     <MenuFlyoutItem Text="open file" Click="OnClickOpenFile"></MenuFlyoutItem>
 
                     <MenuFlyoutItem Text="save file" Click="OnClickSaveFile"></MenuFlyoutItem>
-                    
+
                 </MenuFlyout>
             </AppBarButton.Flyout>
 
         </AppBarButton>
-        <CommandBar HorizontalAlignment="Left" Height="71" Margin="245,64,0,0" Width="850">
+        <CommandBar HorizontalAlignment="Left" Height="71" Margin="243,56,0,0" Width="850">
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton Icon="Accept" Label="uknow"/>
-            <AppBarButton Icon="Cancel" Label="me too lol"/>
+            <AppBarButton Label="Copy?" Icon="Copy"/>
+            <AppBarButton Icon="Paste" Label="Paste?"/>
+            <AppBarButton x:Name="appBarButton1" Icon="Cut" Label="cut??" />
         </CommandBar>
 
         <ContentDialog x:Name="dialogbox1" Content="a" Title="as" PrimaryButtonText="as" d:IsHidden="True"/>
@@ -51,13 +52,13 @@
             </StackPanel>
         </ContentDialog>
         <TextBlock x:Name="directorio" HorizontalAlignment="Left" Margin="245,261,0,0" Text="how are you jsjsj" TextWrapping="Wrap" VerticalAlignment="Top" IsTextSelectionEnabled="True"/>
-
-        <ContentDialog x:Name="open_file_popup" Title="Open file" PrimaryButtonText="open" SecondaryButtonText="cancel" PrimaryButtonClick="OnClickOpenPopup">
+        <ContentDialog x:Name="open_file_popup" Title="Open file" PrimaryButtonText="open" SecondaryButtonText="cancel" PrimaryButtonClick="OnClickOpenPopup" d:IsHidden="True">
             <StackPanel>
-                <TextBlock> choose name</TextBlock>
-                <TextBox x:Name="filename2"></TextBox>
+                <TextBlock><Run Text="choose name"/></TextBlock>
+                <TextBox x:Name="filename2"/>
             </StackPanel>
         </ContentDialog>
-        
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="64,174,0,0" VerticalAlignment="Top" Width="100" Maximum="5"/>
+
     </Grid>
 </Page>
