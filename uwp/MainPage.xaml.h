@@ -7,6 +7,8 @@
 
 #include "MainPage.g.h"
 
+
+
 namespace uwp
 {
 	/// <summary>
@@ -22,5 +24,6 @@ namespace uwp
 		void ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickPrm1(Windows::UI::Xaml::Controls::ContentDialog^ sender, Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs^ args);
 		
+		void OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

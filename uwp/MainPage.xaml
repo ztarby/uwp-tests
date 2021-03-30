@@ -21,6 +21,11 @@
                 <MenuFlyout>
                     <MenuFlyoutItem Text="new file" Click="ClickA">
                     </MenuFlyoutItem>
+
+                    <MenuFlyoutItem Text="open file"></MenuFlyoutItem>
+
+                    <MenuFlyoutItem Text="save file" Click="OnClickSaveFile"></MenuFlyoutItem>
+                    
                 </MenuFlyout>
             </AppBarButton.Flyout>
 

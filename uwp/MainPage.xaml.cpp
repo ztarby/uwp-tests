@@ -29,6 +29,7 @@ MainPage::MainPage()
 	
 }
 
+String^ mainfilename = "null";
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
@@ -48,10 +49,33 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 void uwp::MainPage::OnClickPrm1(Windows::UI::Xaml::Controls::ContentDialog^ sender, Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs^ args)
 {
 	String^ a = filename->Text;
-
+	
 	StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
 	concurrency::create_task(storageFolder->CreateFileAsync(a, CreationCollisionOption::ReplaceExisting));
-
+	
 	textBlock->Text = a;
 	directorio->Text = storageFolder->Path;
+
+	//StorageFolder^ ss = KnownFolders::DocumentsLibrary;
+	//KnownFolders::DocumentsLibrary->CreateFileAsync("aaaa");
+	mainfilename = a;
+}
+
+
+void uwp::MainPage::OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (mainfilename == "null") {
+		
+	}
+	else {
+
+		String^ ffile = textBox1->Text;
+
+		StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
+		concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([ffile](StorageFile^ sampleFile)
+			{
+				
+				concurrency::create_task(FileIO::WriteTextAsync(sampleFile, ffile));
+			});
+	}
 }
