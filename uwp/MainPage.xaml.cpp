@@ -92,21 +92,26 @@ void uwp::MainPage::OnClickOpenPopup(Windows::UI::Xaml::Controls::ContentDialog^
 	mainfilename = filename2->Text;
 	
 	StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
+	try {
+		
+		String^ real;
 
-	
+		concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([](StorageFile^ sampleFile)
+			{
+				return FileIO::ReadTextAsync(sampleFile);
+
+			});
+		
+		
+        textBox1->Text = real;
+	}
+	catch (Exception^ a) {
+
+	}
+
 	textBlock->Text = mainfilename;
 	directorio->Text = storageFolder->Path;
-	textBox1->Text = "file text here";
+	
 	
 }
 
-
-/*
-String^ test() {
-	StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
-	concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([](StorageFile^ sampleFile)
-		{
-			return FileIO::ReadTextAsync(sampleFile);
-		});
-}
-*/
