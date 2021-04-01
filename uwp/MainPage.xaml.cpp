@@ -20,7 +20,7 @@ using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
 
 using namespace Windows::Storage;
-
+using namespace concurrency;
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
 
 MainPage::MainPage()
@@ -36,7 +36,7 @@ int counter = 0;
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	textBox1->Text = "osoaosoo";
+	
 	
 }
 
@@ -98,14 +98,25 @@ void uwp::MainPage::OnClickOpenPopup(Windows::UI::Xaml::Controls::ContentDialog^
 	try {
 		
 		String^ real;
+		
 
-		 concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([](StorageFile^ sampleFile)
+		 concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([real](StorageFile^ sampleFile)
 			{
 				return FileIO::ReadTextAsync(sampleFile);
-
+				
+				 concurrency::create_task(FileIO::ReadTextAsync(sampleFile)).then([sampleFile , real](task<String^> task)
+					{
+						// real = task.get();
+					});
+					
 			});
+			
 		
 		
+		// Pickers::FileOpenPicker^ p = ref new Pickers::FileOpenPicker();
+
+	
+		 
         textBox1->Text = real;
 	}
 	catch (Exception^ a) {
