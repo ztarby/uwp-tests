@@ -1,30 +1,33 @@
 ﻿<Page
-    x:Class="uwp.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:uwp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:Microsoft.UI.Xaml.Controls"
+    x:Class="uwp.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+
 
     <Grid>
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="103" Margin="244,174,0,0" Text="Name file" TextWrapping="Wrap" VerticalAlignment="Top" Width="733" FontSize="48" FontWeight="Normal"/>
         <Button x:Name="button" Content="click" Height="49" Margin="46,416,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Click="a"/>
-        <Button x:Name="button1" Content="Button" Height="120" Margin="46,276,0,0" VerticalAlignment="Top" Width="134" FontSize="24" ToolTipService.ToolTip="ee"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="245,352,0,0" Text="hello word" TextWrapping="Wrap" VerticalAlignment="Top" Height="357" Width="752" PlaceholderText="asa" AcceptsReturn="True"/>
+        <Button x:Name="button1" Content="Button" Height="120" Margin="47,270,0,0" VerticalAlignment="Top" Width="134" FontSize="24" ToolTipService.ToolTip="ee"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="245,352,0,0" Text="hello word" TextWrapping="Wrap" VerticalAlignment="Top" Height="357" Width="752" PlaceholderText="asa" AcceptsReturn="True" Opacity="0.995"/>
         <Border BorderThickness="1" BorderBrush="Black" d:IsHidden="True"/>
         <AppBarButton x:Name="appBarButton" Height="63" Icon="Page" Label="New file (?" Margin="78,54,0,0" Width="88" RenderTransformOrigin="0.513,0.561">
             <AppBarButton.Flyout>
 
                 <MenuFlyout>
-                    <MenuFlyoutItem Text="new file" Click="ClickA">
-                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="new file" Click="ClickA"/>
 
-                    <MenuFlyoutItem Text="open file" Click="OnClickOpenFile"></MenuFlyoutItem>
+                    <MenuFlyoutItem Text="open file" Click="OnClickOpenFile"/>
 
-                    <MenuFlyoutItem Text="save file" Click="OnClickSaveFile"></MenuFlyoutItem>
+                    <MenuFlyoutItem Text="save file" Click="OnClickSaveFile"/>
 
                 </MenuFlyout>
             </AppBarButton.Flyout>
@@ -43,12 +46,12 @@
         <ContentDialog x:Name="dialogbox_pro1"  PrimaryButtonText="ok" Title="a" PrimaryButtonClick="OnClickPrm1" d:IsHidden="True">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
-                    <TextBlock> New file</TextBlock>
+                    <TextBlock><Run Text="New file"/></TextBlock>
                 </DataTemplate>
             </ContentDialog.TitleTemplate>
             <StackPanel>
-                <TextBlock> choose name</TextBlock>
-                <TextBox x:Name="filename"></TextBox>
+                <TextBlock><Run Text="choose name"/></TextBlock>
+                <TextBox x:Name="filename"/>
             </StackPanel>
         </ContentDialog>
         <TextBlock x:Name="directorio" HorizontalAlignment="Left" Margin="245,261,0,0" Text="File directory, open a new file!!!" TextWrapping="Wrap" VerticalAlignment="Top" IsTextSelectionEnabled="True"/>
@@ -60,6 +63,16 @@
         </ContentDialog>
         <Slider x:Name="slider" HorizontalAlignment="Left" Margin="897,109,0,0" VerticalAlignment="Top" Width="100" Maximum="5" ToolTipService.ToolTip="Each number contains the text of you copy"/>
         <TextBlock x:Name="dtext" HorizontalAlignment="Left" Height="174" Margin="897,154,0,0" Text="debug text" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+        <RichEditBox x:Name="richEditBox" HorizontalAlignment="Left" Height="164" Margin="554,154,0,0" VerticalAlignment="Top" Width="284" PlaceholderText="hello word"/>
+        <RichTextBlock x:Name="richTextBlock" HorizontalAlignment="Left" Height="22" Margin="642,116,0,0" VerticalAlignment="Top" Width="103" RenderTransformOrigin="0.566,0.522">
+            <Paragraph>
+                <Run Text="RichTextBlock"/>
+            </Paragraph>
+        </RichTextBlock>
+
+        
+    
+
 
     </Grid>
 </Page>
