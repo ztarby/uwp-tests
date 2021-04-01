@@ -99,7 +99,7 @@ void uwp::MainPage::OnClickOpenPopup(Windows::UI::Xaml::Controls::ContentDialog^
 		
 		String^ real;
 
-		concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([](StorageFile^ sampleFile)
+		 concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([](StorageFile^ sampleFile)
 			{
 				return FileIO::ReadTextAsync(sampleFile);
 
