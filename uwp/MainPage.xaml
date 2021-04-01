@@ -12,8 +12,8 @@
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="103" Margin="244,174,0,0" Text="olita jeje" TextWrapping="Wrap" VerticalAlignment="Top" Width="733" FontSize="48" FontWeight="Normal"/>
         <Button x:Name="button" Content="click" Height="49" Margin="46,416,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Click="a"/>
-        <Button x:Name="button1" Content="Button" Height="120" Margin="46,276,0,0" VerticalAlignment="Top" Width="134" FontSize="24"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="245,352,0,0" Text="pon aqui tu basura" TextWrapping="Wrap" VerticalAlignment="Top" Height="357" Width="752" PlaceholderText="asa"/>
+        <Button x:Name="button1" Content="Button" Height="120" Margin="46,276,0,0" VerticalAlignment="Top" Width="134" FontSize="24" ToolTipService.ToolTip="ee"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="245,352,0,0" Text="pon aqui tu basura" TextWrapping="Wrap" VerticalAlignment="Top" Height="357" Width="752" PlaceholderText="asa" AcceptsReturn="True"/>
         <Border BorderThickness="1" BorderBrush="Black" d:IsHidden="True"/>
         <AppBarButton x:Name="appBarButton" Height="63" Icon="Page" Label="New file (?" Margin="78,54,0,0" Width="88" RenderTransformOrigin="0.513,0.561">
             <AppBarButton.Flyout>
@@ -34,9 +34,9 @@
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton Label="Copy?" Icon="Copy"/>
-            <AppBarButton Icon="Paste" Label="Paste?"/>
-            <AppBarButton x:Name="appBarButton1" Icon="Cut" Label="cut??" />
+            <AppBarButton Label="Copy?" Icon="Copy" Click="OnClickCopy" ToolTipService.ToolTip="Copies in the app the selected text"/>
+            <AppBarButton Icon="Paste" Label="Paste?" Click="OnClickPaste" ToolTipService.ToolTip="Paste in the selected number the text"/>
+            <AppBarButton x:Name="appBarButton1" Icon="Cut" Label="Cut??" Click="OnClickCut" ToolTipService.ToolTip="Cut the selected text in the app" />
         </CommandBar>
 
         <ContentDialog x:Name="dialogbox1" Content="a" Title="as" PrimaryButtonText="as" d:IsHidden="True"/>
@@ -58,7 +58,8 @@
                 <TextBox x:Name="filename2"/>
             </StackPanel>
         </ContentDialog>
-        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="64,174,0,0" VerticalAlignment="Top" Width="100" Maximum="5"/>
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="897,109,0,0" VerticalAlignment="Top" Width="100" Maximum="5" ToolTipService.ToolTip="Each number contains the text of you copy"/>
+        <TextBlock x:Name="dtext" HorizontalAlignment="Left" Height="174" Margin="897,154,0,0" Text="debug text" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
 
     </Grid>
 </Page>

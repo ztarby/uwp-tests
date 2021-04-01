@@ -30,6 +30,9 @@ MainPage::MainPage()
 }
 
 String^ mainfilename = "null";
+constexpr int sizeOfpp = 5;
+String^ pp[sizeOfpp];
+int counter = 0;
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
@@ -115,3 +118,43 @@ void uwp::MainPage::OnClickOpenPopup(Windows::UI::Xaml::Controls::ContentDialog^
 	
 }
 
+
+
+void uwp::MainPage::OnClickCopy(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if(counter >= sizeOfpp)
+	{
+		counter = 0;
+	}
+	pp[counter] = textBox1->SelectedText;
+	counter++;
+}
+
+
+void uwp::MainPage::OnClickPaste(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	double SelectedNum = slider->Value;
+	int SelectedNumInInt = 0;
+	for (int i = 0; i <= sizeOfpp; i++) {
+
+		if (SelectedNum == i) {
+			SelectedNumInInt = i;
+		}
+	}
+	String^ txt = textBox1->Text + " " + pp[SelectedNumInInt];
+	dtext->Text = "Selected num: " + SelectedNum + " Selected num in int: " + SelectedNumInInt + " pp: " + pp[SelectedNumInInt] + " counter: " + counter;
+	textBox1->Text = txt;
+}
+
+
+void uwp::MainPage::OnClickCut(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (counter >= sizeOfpp)
+	{
+		counter = 0;
+	}
+	pp[counter] = textBox1->SelectedText;
+
+	textBox1->Text = " ";
+	counter++;
+}
