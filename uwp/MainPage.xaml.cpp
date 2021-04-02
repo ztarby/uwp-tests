@@ -21,6 +21,10 @@ using namespace Windows::UI::Xaml::Navigation;
 
 using namespace Windows::Storage;
 using namespace concurrency;
+
+using namespace Windows::UI::Text;
+
+
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
 
 MainPage::MainPage()
@@ -36,7 +40,15 @@ int counter = 0;
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	
+	/*
+	Windows::UI::Color^ a = pickcolor->Color;
+	SolidColorBrush^ aa = a;
+	//textBox1->Background = pickcolor->Color;
+	richEditBox->BorderBrush = aa;
+	*/ 
+	//ITextSelection^ s = richEditBox->Document->Selection;
+	TextSetOptions a; 
+	ITextDocument^ ss = richEditBox->Document; ss->SetText(a,"aaa");
 	
 }
 
@@ -44,7 +56,52 @@ void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventAr
 
 void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 { 
-	dialogbox_pro1->ShowAsync();
+	
+
+	if (mode_pro->IsOn == true) {
+		Pickers::FileSavePicker^ p = ref new Pickers::FileSavePicker();
+		p->SuggestedFileName = "urFile";
+		//p->SuggestedStartLocation = KnownFolders::DocumentsLibrary;
+	
+		//StorageFile^ ss = p->PickSaveFileAsync;
+		auto x = ref new Platform::Collections::Vector<String^>;
+		x->Append(".txt");
+        x->Append(".rtf");
+		x->Append(".cpp");
+		x->Append(".py");
+		x->Append(".js");
+		x->Append(".html");
+         p->FileTypeChoices->Insert("uh", x);
+
+		create_task(p->PickSaveFileAsync()).then([this](StorageFile^ file) {
+			if (file != nullptr) {
+				CachedFileManager::DeferUpdates(file);
+
+				create_task(FileIO::WriteTextAsync(file, file->Name)).then([this, file]() {
+
+					create_task(CachedFileManager::CompleteUpdatesAsync(file)).then([this, file](Provider::FileUpdateStatus status) {
+						if (status == Provider::FileUpdateStatus::Complete) {
+							//good
+							textBlock->Text = file->Name;
+							directorio->Text = file->Path;
+						}
+						else {
+							//bad
+							textBlock->Text = "error!";
+						}
+						});
+					});
+			}
+			else {
+				//no file
+				textBlock->Text = "error, null file";
+			}
+
+			});
+	}
+	else {
+		dialogbox_pro1->ShowAsync();
+	}
 	
 }
 
@@ -97,9 +154,9 @@ void uwp::MainPage::OnClickOpenPopup(Windows::UI::Xaml::Controls::ContentDialog^
 	StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
 	try {
 		
-		String^ real;
+		String^ real = "null";
 		
-
+		/*
 		 concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([real](StorageFile^ sampleFile)
 			{
 				return FileIO::ReadTextAsync(sampleFile);
@@ -110,13 +167,8 @@ void uwp::MainPage::OnClickOpenPopup(Windows::UI::Xaml::Controls::ContentDialog^
 					});
 					
 			});
-			
+			*/
 		
-		
-		// Pickers::FileOpenPicker^ p = ref new Pickers::FileOpenPicker();
-
-	
-		 
         textBox1->Text = real;
 	}
 	catch (Exception^ a) {
