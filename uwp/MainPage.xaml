@@ -34,10 +34,17 @@
 
         </AppBarButton>
         <CommandBar HorizontalAlignment="Left" Height="71" Margin="243,56,0,0" Width="850">
+            <CommandBar.SecondaryCommands>
+                <AppBarToggleButton x:Name="appBarToggleButton" Icon="Switch" Label="Mode PRO?" HorizontalAlignment="Left"/>
+            </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarToggleButton x:Name="appBarToggleButton" Icon="Switch" Label="Mode PRO?" HorizontalAlignment="Center"/>
+            <AppBarButton x:Name="appBarButton6" Icon="Document" Label="text background" HorizontalAlignment="Center"/>
+            <AppBarButton x:Name="appBarButton5" Icon="FontColor" Label="text color"/>
+            <AppBarButton x:Name="appBarButton7" Icon="Underline" Label="underline" Click="OnClickUnderline"/>
+            <AppBarButton x:Name="appBarButton4" Icon="Italic" Label="italic" Click="OnClickItalic"/>
+            <AppBarButton x:Name="appBarButton3" Icon="Bold" Label="bold?" HorizontalAlignment="Center" Click="OnClickBold"/>
             <AppBarButton x:Name="appBarButton2" Icon="Edit" Label="colour" HorizontalAlignment="Center">
                 <AppBarButton.Flyout>
                     <Flyout>
@@ -77,9 +84,9 @@
         <Slider x:Name="slider" HorizontalAlignment="Left" Margin="897,109,0,0" VerticalAlignment="Top" Width="100" Maximum="5" ToolTipService.ToolTip="Each number contains the text of you copy"/>
         <TextBlock x:Name="dtext" HorizontalAlignment="Left" Height="174" Margin="897,154,0,0" Text="debug text" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
         <RichEditBox x:Name="richEditBox" HorizontalAlignment="Left" Height="164" Margin="554,154,0,0" VerticalAlignment="Top" Width="284" PlaceholderText="hello word">
-            <RichEditBox.Background>
+            <RichEditBox.BorderBrush>
                 <SolidColorBrush Color="{x:Bind pickcolor.Color, Mode=OneWay}"/>
-            </RichEditBox.Background>
+            </RichEditBox.BorderBrush>
 
 
         </RichEditBox>
@@ -88,7 +95,7 @@
                 <Run Text="RichTextBlock"/>
             </Paragraph>
         </RichTextBlock>
-        <ColorPicker Margin="-838,659,826,-692" IsColorChannelTextInputVisible="False" />
         <ToggleSwitch x:Name="mode_pro" Header="Mode pro2" Margin="55,136,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="sliderUnd" HorizontalAlignment="Left" Margin="521,109,0,0" VerticalAlignment="Top" Width="100" Maximum="20" TickPlacement="Inline" ToolTipService.ToolTip="Underline type (?"/>
     </Grid>
 </Page>

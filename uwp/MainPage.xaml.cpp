@@ -36,7 +36,7 @@ MainPage::MainPage()
 String^ mainfilename = "null";
 constexpr int sizeOfpp = 5;
 String^ pp[sizeOfpp];
-int counter = 0;
+unsigned int counter = 0;
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
@@ -46,9 +46,16 @@ void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventAr
 	//textBox1->Background = pickcolor->Color;
 	richEditBox->BorderBrush = aa;
 	*/ 
-	//ITextSelection^ s = richEditBox->Document->Selection;
-	TextSetOptions a; 
-	ITextDocument^ ss = richEditBox->Document; ss->SetText(a,"aaa");
+	ITextSelection^ s = richEditBox->Document->Selection;
+	//TextSetOptions a; 
+	//ITextDocument^ ss = richEditBox->Document; ss->SetText(a,"aaa");
+	//ITextDocument^ textt = richEditBox->TextDocument;
+	//String^ aa = "a";
+	//Documents::TextElement x;
+	//directorio->Text =aa;
+
+	ITextCharacterFormat^ txt = s->CharacterFormat;
+	txt->ForegroundColor = pickcolor->Color;
 	
 }
 
@@ -56,22 +63,24 @@ void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventAr
 
 void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 { 
-	
-
 	if (mode_pro->IsOn == true) {
+		ITextDocument^ textt = richEditBox->TextDocument;
+		auto textbox = textt->ToString();
+
+
 		Pickers::FileSavePicker^ p = ref new Pickers::FileSavePicker();
 		p->SuggestedFileName = "urFile";
 		//p->SuggestedStartLocation = KnownFolders::DocumentsLibrary;
 	
-		//StorageFile^ ss = p->PickSaveFileAsync;
+		
 		auto x = ref new Platform::Collections::Vector<String^>;
 		x->Append(".txt");
-        x->Append(".rtf");
-		x->Append(".cpp");
-		x->Append(".py");
-		x->Append(".js");
-		x->Append(".html");
-         p->FileTypeChoices->Insert("uh", x);
+      //  x->Append(".rtf");
+		//x->Append(".cpp");
+		//x->Append(".py");
+		//x->Append(".js");
+		//x->Append(".html");
+         p->FileTypeChoices->Insert("text file ???", x);
 
 		create_task(p->PickSaveFileAsync()).then([this](StorageFile^ file) {
 			if (file != nullptr) {
@@ -84,6 +93,8 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 							//good
 							textBlock->Text = file->Name;
 							directorio->Text = file->Path;
+							
+							
 						}
 						else {
 							//bad
@@ -220,4 +231,62 @@ void uwp::MainPage::OnClickCut(Platform::Object^ sender, Windows::UI::Xaml::Rout
 
 	textBox1->Text = " ";
 	counter++;
+}
+
+
+void uwp::MainPage::OnClickBold(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ITextSelection^ textS = richEditBox->Document->Selection;
+	if (textS != nullptr) {
+		ITextCharacterFormat^ format = textS->CharacterFormat;
+		format->Bold = FormatEffect::Toggle;
+		textS->CharacterFormat = format;
+		
+	}
+
+}
+
+
+void uwp::MainPage::OnClickItalic(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ITextSelection^ textS = richEditBox->Document->Selection;
+	if (textS != nullptr) {
+		ITextCharacterFormat^ format = textS->CharacterFormat;
+		format->Italic = FormatEffect::Toggle;
+		textS->CharacterFormat = format;
+	
+	}
+}
+
+
+void uwp::MainPage::OnClickUnderline(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ITextSelection^ textS = richEditBox->Document->Selection;
+	if (textS != nullptr) {
+		ITextCharacterFormat^ format = textS->CharacterFormat;
+
+		
+		double dd = slider->Value;
+		//20
+		
+		int ddd = dd;
+		switch (ddd) {
+		case(0):
+			if (format->Underline == UnderlineType::None) {
+				format->Underline = UnderlineType::Single;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(1): 
+			format->Underline = UnderlineType::Dash;
+			break;
+		default: 
+			format->Underline = UnderlineType::None;
+			break;
+			   
+		}
+		textS->CharacterFormat = format;
+	}
 }

@@ -30,5 +30,8 @@ namespace uwp
 		void OnClickCopy(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickPaste(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickCut(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnClickBold(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnClickItalic(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnClickUnderline(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }
