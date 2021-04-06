@@ -40,8 +40,8 @@
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton x:Name="appBarButton6" Icon="Document" Label="text background" HorizontalAlignment="Center"/>
-            <AppBarButton x:Name="appBarButton5" Icon="FontColor" Label="text color"/>
+            <AppBarButton x:Name="appBarButton6" Icon="Document" Label="text background" HorizontalAlignment="Center" Click="OnClickBackColor"/>
+            <AppBarButton x:Name="appBarButton5" Icon="FontColor" Label="text color" Click="OnClickTxtColor"/>
             <AppBarButton x:Name="appBarButton7" Icon="Underline" Label="underline" Click="OnClickUnderline"/>
             <AppBarButton x:Name="appBarButton4" Icon="Italic" Label="italic" Click="OnClickItalic"/>
             <AppBarButton x:Name="appBarButton3" Icon="Bold" Label="bold?" HorizontalAlignment="Center" Click="OnClickBold"/>

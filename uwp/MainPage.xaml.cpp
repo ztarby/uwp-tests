@@ -266,10 +266,16 @@ void uwp::MainPage::OnClickUnderline(Platform::Object^ sender, Windows::UI::Xaml
 		ITextCharacterFormat^ format = textS->CharacterFormat;
 
 		
-		double dd = slider->Value;
 		//20
+		double d = sliderUnd->Value;
+		int ddd = d;
 		
-		int ddd = dd;
+		/* for (int i = 0; i <= 20; i++) {
+			if (slider->Value == i) {
+				ddd = i;
+			}
+		}
+		*/
 		switch (ddd) {
 		case(0):
 			if (format->Underline == UnderlineType::None) {
@@ -280,13 +286,206 @@ void uwp::MainPage::OnClickUnderline(Platform::Object^ sender, Windows::UI::Xaml
 			}
 			break;
 		case(1): 
-			format->Underline = UnderlineType::Dash;
+			if (format->Underline == UnderlineType::None)
+			{
+               format->Underline = UnderlineType::Dash;
+			   
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			
+			break;
+		case(2):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::DashDot;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(3):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::DashDotDot;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(4):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::Dotted;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(5):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::Double;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(6):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::DoubleWave;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(7): 
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::HeavyWave;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(8):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::LongDash;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(9):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::Thick;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(10): 
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::ThickDash;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(11):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::ThickDashDot;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(12):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::ThickDashDotDot;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(13):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::ThickDotted;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(14):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::ThickLongDash;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(15): 
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::Thin;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(16): 
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::Undefined;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(17): 
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::Wave;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
+			break;
+		case(18):
+			if (format->Underline == UnderlineType::None)
+			{
+				format->Underline = UnderlineType::Words;
+			}
+			else {
+				format->Underline = UnderlineType::None;
+			}
 			break;
 		default: 
 			format->Underline = UnderlineType::None;
 			break;
 			   
 		}
+		textS->CharacterFormat = format;
+	}
+}
+/*
+	if (format->Underline == UnderlineType::None)
+		{
+
+		}
+		else {
+			format->Underline = UnderlineType::None;
+		}
+*/
+
+void uwp::MainPage::OnClickTxtColor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ITextSelection^ textS = richEditBox->Document->Selection;
+	if (textS != nullptr) {
+		ITextCharacterFormat^ format = textS->CharacterFormat;
+
+		format->ForegroundColor = pickcolor->Color;
+		textS->CharacterFormat = format;
+	}
+}
+
+
+void uwp::MainPage::OnClickBackColor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ITextSelection^ textS = richEditBox->Document->Selection;
+	if (textS != nullptr) {
+		ITextCharacterFormat^ format = textS->CharacterFormat;
+
+		format->BackgroundColor = pickcolor->Color;
 		textS->CharacterFormat = format;
 	}
 }
