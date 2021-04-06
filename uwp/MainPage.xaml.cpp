@@ -66,7 +66,7 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 	if (mode_pro->IsOn == true) {
 		ITextDocument^ textt = richEditBox->TextDocument;
 		auto textbox = textt->ToString();
-
+		
 
 		Pickers::FileSavePicker^ p = ref new Pickers::FileSavePicker();
 		p->SuggestedFileName = "urFile";
@@ -75,18 +75,23 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 		
 		auto x = ref new Platform::Collections::Vector<String^>;
 		x->Append(".txt");
+		x->Append(".rtf");
       //  x->Append(".rtf");
 		//x->Append(".cpp");
 		//x->Append(".py");
 		//x->Append(".js");
 		//x->Append(".html");
          p->FileTypeChoices->Insert("text file ???", x);
-
+		 
 		create_task(p->PickSaveFileAsync()).then([this](StorageFile^ file) {
 			if (file != nullptr) {
 				CachedFileManager::DeferUpdates(file);
-
+				
 				create_task(FileIO::WriteTextAsync(file, file->Name)).then([this, file]() {
+
+					
+					//Streams::RandomAccessStream^ r;
+                    //richEditBox->Document->SaveToStream(TextGetOptions::FormatRtf,r);
 
 					create_task(CachedFileManager::CompleteUpdatesAsync(file)).then([this, file](Provider::FileUpdateStatus status) {
 						if (status == Provider::FileUpdateStatus::Complete) {
@@ -154,7 +159,27 @@ void uwp::MainPage::OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml:
 
 void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	open_file_popup->ShowAsync();
+	if (mode_pro->IsOn == true) {
+		Pickers::FileOpenPicker^ opn = ref new Pickers::FileOpenPicker();
+		opn->ViewMode = Pickers::PickerViewMode::Thumbnail;
+		opn->SuggestedStartLocation = Pickers::PickerLocationId::DocumentsLibrary;
+		opn->FileTypeFilter->Append(".txt");
+		opn->FileTypeFilter->Append(".rtf");
+
+		create_task(opn->PickSingleFileAsync()).then([this](StorageFile^ file) {
+			if (file) {
+				textBlock->Text = file->Name;
+				directorio->Text = file->Path;
+				
+			}
+			else {
+				textBlock->Text = "error, cancelled operation";
+			}
+			});
+	}
+	else {
+		open_file_popup->ShowAsync();
+       }
 }
 
 
