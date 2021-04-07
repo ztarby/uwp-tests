@@ -172,6 +172,7 @@ void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml:
 				textBlock->Text = file->Name;
 				directorio->Text = file->Path;
 				create_task(file->OpenAsync(FileAccessMode::Read)).then([file, this](Streams::IRandomAccessStream^ randd) {
+					
 					richEditBox->Document->LoadFromStream(TextSetOptions::FormatRtf,randd);
 					
 					});
@@ -229,7 +230,13 @@ void uwp::MainPage::OnClickCopy(Platform::Object^ sender, Windows::UI::Xaml::Rou
 	{
 		counter = 0;
 	}
-	pp[counter] = textBox1->SelectedText;
+	if (mode_pro->IsOn == false) {
+		pp[counter] = textBox1->SelectedText;
+	}
+	else {
+		ITextSelection^ textS = richEditBox->Document->Selection;
+		pp[counter] = textS->Text;
+	}
 	counter++;
 }
 
@@ -244,9 +251,23 @@ void uwp::MainPage::OnClickPaste(Platform::Object^ sender, Windows::UI::Xaml::Ro
 			SelectedNumInInt = i;
 		}
 	}
-	String^ txt = textBox1->Text + " " + pp[SelectedNumInInt];
-	dtext->Text = "Selected num: " + SelectedNum + " Selected num in int: " + SelectedNumInInt + " pp: " + pp[SelectedNumInInt] + " counter: " + counter;
-	textBox1->Text = txt;
+	if (mode_pro->IsOn == false) {
+		String^ txt = textBox1->Text + " " + pp[SelectedNumInInt];
+		//dtext->Text = "Selected num: " + SelectedNum + " Selected num in int: " + SelectedNumInInt + " pp: " + pp[SelectedNumInInt] + " counter: " + counter;
+		textBox1->Text = txt;
+	}
+	else {
+		ITextSelection^ textS = richEditBox->Document->Selection;
+		if (textS) {
+			textS->Text = pp[SelectedNumInInt];
+		}
+		else {
+			ITextDocument^ dd = richEditBox->Document;
+			//String^ bbb = "sss";
+			richEditBox->Document->SetText(TextSetOptions::FormatRtf, pp[SelectedNumInInt]);
+			
+		}
+	}
 }
 
 
@@ -256,9 +277,16 @@ void uwp::MainPage::OnClickCut(Platform::Object^ sender, Windows::UI::Xaml::Rout
 	{
 		counter = 0;
 	}
-	pp[counter] = textBox1->SelectedText;
+	if (mode_pro->IsOn == false) {
+		pp[counter] = textBox1->SelectedText;
 
-	textBox1->Text = " ";
+		textBox1->Text = " ";
+	}
+	else {
+		ITextSelection^ textS = richEditBox->Document->Selection;
+		pp[counter] = textS->Text;
+		textS->Text = "";
+	}
 	counter++;
 }
 
