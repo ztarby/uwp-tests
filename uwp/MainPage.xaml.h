@@ -35,5 +35,7 @@ namespace uwp
 		void OnClickUnderline(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickTxtColor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickBackColor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnClickIncrease(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnClickDecrease(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

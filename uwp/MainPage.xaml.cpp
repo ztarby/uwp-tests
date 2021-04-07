@@ -64,9 +64,10 @@ void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventAr
 void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 { 
 	if (mode_pro->IsOn == true) {
-		ITextDocument^ textt = richEditBox->TextDocument;
-		auto textbox = textt->ToString();
-		
+		//ITextDocument^ textt = richEditBox->TextDocument;
+		//auto textbox = textt->ToString();
+		ITextSelection^ temptext = richEditBox->Document->Selection;
+		String^ tempptext = temptext->Text;
 
 		Pickers::FileSavePicker^ p = ref new Pickers::FileSavePicker();
 		p->SuggestedFileName = "urFile";
@@ -83,11 +84,11 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 		//x->Append(".html");
          p->FileTypeChoices->Insert("text file ???", x);
 		 
-		create_task(p->PickSaveFileAsync()).then([this](StorageFile^ file) {
+		create_task(p->PickSaveFileAsync()).then([this,tempptext](StorageFile^ file) {
 			if (file != nullptr) {
 				CachedFileManager::DeferUpdates(file);
 				
-				create_task(FileIO::WriteTextAsync(file, file->Name)).then([this, file]() {
+				create_task(FileIO::WriteTextAsync(file, tempptext)).then([this, file]() {
 
 					
 					//Streams::RandomAccessStream^ r;
@@ -170,7 +171,10 @@ void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml:
 			if (file) {
 				textBlock->Text = file->Name;
 				directorio->Text = file->Path;
-				
+				create_task(file->OpenAsync(FileAccessMode::Read)).then([file, this](Streams::IRandomAccessStream^ randd) {
+					richEditBox->Document->LoadFromStream(TextSetOptions::FormatRtf,randd);
+					
+					});
 			}
 			else {
 				textBlock->Text = "error, cancelled operation";
@@ -511,6 +515,30 @@ void uwp::MainPage::OnClickBackColor(Platform::Object^ sender, Windows::UI::Xaml
 		ITextCharacterFormat^ format = textS->CharacterFormat;
 
 		format->BackgroundColor = pickcolor->Color;
+		textS->CharacterFormat = format;
+	}
+}
+
+
+void uwp::MainPage::OnClickIncrease(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ITextSelection^ textS = richEditBox->Document->Selection;
+	if (textS != nullptr) {
+		ITextCharacterFormat^ format = textS->CharacterFormat;
+		format->AllCaps = FormatEffect::Toggle;
+
+		textS->CharacterFormat = format;
+	}
+}
+
+
+void uwp::MainPage::OnClickDecrease(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ITextSelection^ textS = richEditBox->Document->Selection;
+	if (textS != nullptr) {
+		ITextCharacterFormat^ format = textS->CharacterFormat;
+		format->SmallCaps = FormatEffect::Toggle;
+		
 		textS->CharacterFormat = format;
 	}
 }

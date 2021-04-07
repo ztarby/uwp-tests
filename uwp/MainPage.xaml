@@ -4,7 +4,7 @@
     xmlns:local="using:uwp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Custom="using:Microsoft.UI.Xaml.Controls"
+    xmlns:Custom="using:Microsoft.UI.Xaml.Controls" x:Name="pag"
     x:Class="uwp.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -15,9 +15,8 @@
     <Grid>
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="103" Margin="244,174,0,0" Text="Name file" TextWrapping="Wrap" VerticalAlignment="Top" Width="733" FontSize="48" FontWeight="Normal"/>
-        <Button x:Name="button" Content="click" Height="49" Margin="46,416,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Click="a"/>
-        <Button x:Name="button1" Content="Button" Height="120" Margin="46,260,0,0" VerticalAlignment="Top" Width="134" FontSize="24" ToolTipService.ToolTip="ee"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="245,352,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="357" Width="752" PlaceholderText="write something" AcceptsReturn="True" Opacity="0.995" InputScope="Default"/>
+        <Button x:Name="button" Content="trash button" Height="49" Margin="38,261,0,0" VerticalAlignment="Top" Width="150" FontSize="24" Click="a"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="744,164,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="176" Width="253" PlaceholderText="write something" AcceptsReturn="True" Opacity="0.995" InputScope="Default" ToolTipService.ToolTip="old editor"/>
         <Border BorderThickness="1" BorderBrush="Black" d:IsHidden="True"/>
         <AppBarButton x:Name="appBarButton" Height="63" Icon="Page" Label="New file (?" Margin="78,54,0,0" Width="88" RenderTransformOrigin="0.513,0.561">
             <AppBarButton.Flyout>
@@ -33,13 +32,27 @@
             </AppBarButton.Flyout>
 
         </AppBarButton>
-        <CommandBar HorizontalAlignment="Left" Height="71" Margin="243,56,0,0" Width="850">
+        <CommandBar HorizontalAlignment="Left" Height="71" Margin="243,56,0,0" Width="947">
             <CommandBar.SecondaryCommands>
                 <AppBarToggleButton x:Name="appBarToggleButton" Icon="Switch" Label="Mode PRO?" HorizontalAlignment="Left"/>
+                <AppBarButton x:Name="appBarButton8" Label="Decrease" Icon="FontDecrease" Click="OnClickDecrease"/>
             </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
+            <AppBarButton x:Name="appBarButton10" Icon="FontSize" Label="size??">
+                <AppBarButton.Flyout>
+                    <Flyout>
+                        <Grid>
+                            <Custom:NumberBox Name="sizetext" 
+                                SmallChange="10"
+                              LargeChange="100"
+                                SpinButtonPlacementMode="Inline"/>
+                        </Grid>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton x:Name="appBarButton9" Label="Increase" Click="OnClickIncrease" Icon="FontIncrease"/>
             <AppBarButton x:Name="appBarButton6" Icon="Document" Label="text background" HorizontalAlignment="Center" Click="OnClickBackColor"/>
             <AppBarButton x:Name="appBarButton5" Icon="FontColor" Label="text color" Click="OnClickTxtColor"/>
             <AppBarButton x:Name="appBarButton7" Icon="Underline" Label="underline" Click="OnClickUnderline"/>
@@ -81,21 +94,16 @@
                 <TextBox x:Name="filename2"/>
             </StackPanel>
         </ContentDialog>
-        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="897,109,0,0" VerticalAlignment="Top" Width="100" Maximum="5" ToolTipService.ToolTip="Each number contains the text of you copy"/>
-        <TextBlock x:Name="dtext" HorizontalAlignment="Left" Height="174" Margin="897,154,0,0" Text="debug text" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
-        <RichEditBox x:Name="richEditBox" HorizontalAlignment="Left" Height="164" Margin="554,154,0,0" VerticalAlignment="Top" Width="284" PlaceholderText="hello word">
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="986,109,0,0" VerticalAlignment="Top" Width="100" Maximum="5" ToolTipService.ToolTip="Each number contains the text of you copy"/>
+        <TextBlock x:Name="dtext" HorizontalAlignment="Left" Height="174" Margin="1037,164,0,0" Text="debug text" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+        <RichEditBox x:Name="richEditBox" HorizontalAlignment="Left" Height="357" Margin="244,352,0,0" VerticalAlignment="Top" Width="753" PlaceholderText="write something">
             <RichEditBox.BorderBrush>
                 <SolidColorBrush Color="{x:Bind pickcolor.Color, Mode=OneWay}"/>
             </RichEditBox.BorderBrush>
 
 
         </RichEditBox>
-        <RichTextBlock x:Name="richTextBlock" HorizontalAlignment="Left" Height="22" Margin="642,116,0,0" VerticalAlignment="Top" Width="103" RenderTransformOrigin="0.566,0.522" d:IsHidden="True">
-            <Paragraph>
-                <Run Text="RichTextBlock"/>
-            </Paragraph>
-        </RichTextBlock>
         <ToggleSwitch x:Name="mode_pro" Header="Mode pro2" Margin="55,136,0,0" VerticalAlignment="Top"/>
-        <Slider x:Name="sliderUnd" HorizontalAlignment="Left" Margin="521,109,0,0" VerticalAlignment="Top" Width="100" Maximum="20" TickPlacement="Inline" ToolTipService.ToolTip="Underline type (?"/>
+        <Slider x:Name="sliderUnd" HorizontalAlignment="Left" Margin="626,109,0,0" VerticalAlignment="Top" Width="100" Maximum="20" TickPlacement="Inline" ToolTipService.ToolTip="Underline type (?"/>
     </Grid>
 </Page>
