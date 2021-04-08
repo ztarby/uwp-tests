@@ -37,6 +37,7 @@ String^ mainfilename = "null";
 constexpr int sizeOfpp = 5;
 String^ pp[sizeOfpp];
 unsigned int counter = 0;
+StorageFile^ f;
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
@@ -141,19 +142,31 @@ void uwp::MainPage::OnClickPrm1(Windows::UI::Xaml::Controls::ContentDialog^ send
 
 void uwp::MainPage::OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	if (mainfilename == "null") {
-		
+	if (mode_pro->IsOn == false) {
+		if (mainfilename == "null") {
+
+		}
+		else {
+
+			String^ ffile = textBox1->Text;
+
+			StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
+			concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([ffile](StorageFile^ sampleFile)
+				{
+
+					concurrency::create_task(FileIO::WriteTextAsync(sampleFile, ffile));
+				});
+		}
 	}
 	else {
-
-		String^ ffile = textBox1->Text;
-
-		StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
-		concurrency::create_task(storageFolder->GetFileAsync(mainfilename)).then([ffile](StorageFile^ sampleFile)
-			{
-			
-				concurrency::create_task(FileIO::WriteTextAsync(sampleFile, ffile));
-			});
+		if (f != nullptr) {
+			create_task(f->OpenAsync(FileAccessMode::ReadWrite)).then([this](Streams::IRandomAccessStream^ randd) {
+				richEditBox->Document->SaveToStream(TextGetOptions::FormatRtf, randd);
+				});
+		}
+		else {
+			error_dialog->ShowAsync();
+		}
 	}
 }
 
@@ -169,6 +182,7 @@ void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml:
 
 		create_task(opn->PickSingleFileAsync()).then([this](StorageFile^ file) {
 			if (file) {
+				f = file;
 				textBlock->Text = file->Name;
 				directorio->Text = file->Path;
 				create_task(file->OpenAsync(FileAccessMode::Read)).then([file, this](Streams::IRandomAccessStream^ randd) {
