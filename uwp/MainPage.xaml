@@ -15,7 +15,7 @@
     <Grid>
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="103" Margin="244,174,0,0" Text="Name file" TextWrapping="Wrap" VerticalAlignment="Top" Width="733" FontSize="48" FontWeight="Normal"/>
-        <Button x:Name="button" Content="trash button" Height="49" Margin="34,290,0,0" VerticalAlignment="Top" Width="150" FontSize="24" Click="a"/>
+        <Button x:Name="button" Content="trash button" Height="49" Margin="36,363,0,0" VerticalAlignment="Top" Width="150" FontSize="24" Click="a"/>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="744,164,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="176" Width="253" PlaceholderText="write something" AcceptsReturn="True" Opacity="0.995" InputScope="Default" ToolTipService.ToolTip="old editor"/>
         <Border BorderThickness="1" BorderBrush="Black" d:IsHidden="True"/>
         <AppBarButton x:Name="appBarButton" Height="63" Icon="Page" Label="New file (?" Margin="57,124,0,0" Width="88" RenderTransformOrigin="0.513,0.561">
@@ -107,13 +107,14 @@
 
 
         </RichEditBox>
-        <ToggleSwitch x:Name="mode_pro" Header="Mode pro2" Margin="34,206,0,0" VerticalAlignment="Top"/>
+        <ToggleSwitch x:Name="mode_pro" Header="Mode mew editor" Margin="34,206,0,0" VerticalAlignment="Top" IsOn="True"/>
         <Slider x:Name="sliderUnd" HorizontalAlignment="Left" Margin="402,109,0,0" VerticalAlignment="Top" Width="100" Maximum="20" TickPlacement="Inline" ToolTipService.ToolTip="Underline type (?"/>
         <AppBarButton x:Name="appBarButton14" Icon="Accept" Label="AppBarButton" Margin="58,417,0,0"/>
-        <ContentDialog x:Name="error_dialog" PrimaryButtonText="ok" Title="error ????">
+        <ContentDialog x:Name="error_dialog" PrimaryButtonText="ok" Title="error ????" d:IsHidden="True">
             <StackPanel>
                 <TextBlock x:Name="errormsg" Text="a error ocurred"></TextBlock>
             </StackPanel>
         </ContentDialog>
+        <ToggleSwitch x:Name="new_fileTS" Header="New file 2" Margin="32,270,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

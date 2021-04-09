@@ -71,7 +71,7 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 		String^ tempptext = temptext->Text;
 
 		Pickers::FileSavePicker^ p = ref new Pickers::FileSavePicker();
-		p->SuggestedFileName = "urFile";
+		p->SuggestedFileName = "My best file ever and a super name of the word xD";
 		//p->SuggestedStartLocation = KnownFolders::DocumentsLibrary;
 	
 		
@@ -83,36 +83,44 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 		//x->Append(".py");
 		//x->Append(".js");
 		//x->Append(".html");
-         p->FileTypeChoices->Insert("text file ???", x);
+         p->FileTypeChoices->Insert("text file and more (.txt , .rtf)", x);
 		 
 		create_task(p->PickSaveFileAsync()).then([this,tempptext](StorageFile^ file) {
 			if (file != nullptr) {
+				f = file;
 				CachedFileManager::DeferUpdates(file);
-				
-				create_task(FileIO::WriteTextAsync(file, tempptext)).then([this, file]() {
+				if (new_fileTS->IsOn == false) {
+					create_task(FileIO::WriteTextAsync(file, tempptext)).then([this, file]() {
 
-					
-					//Streams::RandomAccessStream^ r;
-                    //richEditBox->Document->SaveToStream(TextGetOptions::FormatRtf,r);
+						create_task(CachedFileManager::CompleteUpdatesAsync(file)).then([this, file](Provider::FileUpdateStatus status) {
+							if (status == Provider::FileUpdateStatus::Complete) {
+								//good
+								textBlock->Text = file->Name;
+								directorio->Text = file->Path;
 
-					create_task(CachedFileManager::CompleteUpdatesAsync(file)).then([this, file](Provider::FileUpdateStatus status) {
-						if (status == Provider::FileUpdateStatus::Complete) {
-							//good
-							textBlock->Text = file->Name;
-							directorio->Text = file->Path;
-							
-							
-						}
-						else {
-							//bad
-							textBlock->Text = "error!";
-						}
+
+							}
+							else {
+								//bad
+								//textBlock->Text = "error!";
+								errormsg->Text = "Something go wrong";
+								error_dialog->ShowAsync();
+							}
+							});
 						});
-					});
+				}
+				else {
+					textBlock->Text = file->Name;
+					directorio->Text = file->Path;
+					create_task(file->OpenAsync(FileAccessMode::ReadWrite)).then([this](Streams::IRandomAccessStream^ randd) {
+						richEditBox->Document->SaveToStream(TextGetOptions::FormatRtf,randd);
+						});
+				}
 			}
 			else {
 				//no file
-				textBlock->Text = "error, null file";
+				errormsg->Text = "Operation cancelled";
+				error_dialog->ShowAsync();
 			}
 
 			});
