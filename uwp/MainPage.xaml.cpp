@@ -576,7 +576,7 @@ void uwp::MainPage::OnClickIncrease(Platform::Object^ sender, Windows::UI::Xaml:
 	if (textS != nullptr) {
 		ITextCharacterFormat^ format = textS->CharacterFormat;
 		format->AllCaps = FormatEffect::Toggle;
-
+		//richEditBox->Document->Selection->CharacterFormat->Size
 		textS->CharacterFormat = format;
 	}
 }

@@ -36,6 +36,19 @@
             <CommandBar.SecondaryCommands>
                 <AppBarToggleButton x:Name="appBarToggleButton" Icon="Switch" Label="Mode PRO?" HorizontalAlignment="Left"/>
                 <AppBarButton x:Name="appBarButton8" Label="Decrease" Icon="FontDecrease" Click="OnClickDecrease"/>
+                <AppBarButton x:Name="appBarButton10_Copy" Icon="FontSize" Label="weight">
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <Grid>
+                                <Custom:NumberBox Value="{x:Bind Mode=TwoWay, Path=richEditBox.Document.Selection.CharacterFormat.Weight}"
+                                        x:Name="sizetext1" 
+                                        SmallChange="10"
+                                        LargeChange="100"
+                                        SpinButtonPlacementMode="Inline"/>
+                            </Grid>
+                        </Flyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
             </CommandBar.SecondaryCommands>
             <CommandBar.Content>
                 <Grid/>
@@ -45,7 +58,7 @@
                 <AppBarButton.Flyout>
                     <Flyout>
                         <Grid>
-                            <Custom:NumberBox 
+                            <Custom:NumberBox Value="{x:Bind Path=richEditBox.Document.Selection.CharacterFormat.Size , Mode=TwoWay}"
                                 x:Name="sizetext" 
                                 SmallChange="10"
                               LargeChange="100"
