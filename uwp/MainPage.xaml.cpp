@@ -121,6 +121,7 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 				//no file
 				errormsg->Text = "Operation cancelled";
 				error_dialog->ShowAsync();
+				
 			}
 
 			});
@@ -168,9 +169,18 @@ void uwp::MainPage::OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml:
 	}
 	else {
 		if (f != nullptr) {
-			create_task(f->OpenAsync(FileAccessMode::ReadWrite)).then([this](Streams::IRandomAccessStream^ randd) {
-				richEditBox->Document->SaveToStream(TextGetOptions::FormatRtf, randd);
-				});
+			try {
+				create_task(f->OpenAsync(FileAccessMode::ReadWrite)).then([this](Streams::IRandomAccessStream^ randd) {
+					richEditBox->Document->SaveToStream(TextGetOptions::FormatRtf, randd);
+
+					});
+			}
+			catch (Exception^ e) {
+				errormsg->Text = e->Message;
+				error_dialog->ShowAsync(); 
+				//if a file is open causes a error
+				//class Exception did not work
+			}
 		}
 		else {
 			error_dialog->ShowAsync();
@@ -576,7 +586,7 @@ void uwp::MainPage::OnClickIncrease(Platform::Object^ sender, Windows::UI::Xaml:
 	if (textS != nullptr) {
 		ITextCharacterFormat^ format = textS->CharacterFormat;
 		format->AllCaps = FormatEffect::Toggle;
-		//richEditBox->Document->Selection->CharacterFormat->Size
+		
 		textS->CharacterFormat = format;
 	}
 }
@@ -590,5 +600,98 @@ void uwp::MainPage::OnClickDecrease(Platform::Object^ sender, Windows::UI::Xaml:
 		format->SmallCaps = FormatEffect::Toggle;
 		
 		textS->CharacterFormat = format;
+	}
+}
+
+//starts of weight text
+
+void uwp::MainPage::click100(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	richEditBox->Document->Selection->CharacterFormat->Weight = 100;
+}
+
+
+void uwp::MainPage::click200(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	richEditBox->Document->Selection->CharacterFormat->Weight = 200;
+}
+
+
+void uwp::MainPage::click300(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	richEditBox->Document->Selection->CharacterFormat->Weight = 300;
+}
+
+
+void uwp::MainPage::click400(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	richEditBox->Document->Selection->CharacterFormat->Weight = 400;
+}
+
+
+void uwp::MainPage::click500(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	richEditBox->Document->Selection->CharacterFormat->Weight = 500;
+}
+
+
+void uwp::MainPage::click600(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	richEditBox->Document->Selection->CharacterFormat->Weight = 600;
+}
+
+
+void uwp::MainPage::click700(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	richEditBox->Document->Selection->CharacterFormat->Weight = 700;
+}
+
+
+void uwp::MainPage::click800(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	richEditBox->Document->Selection->CharacterFormat->Weight = 800;
+}
+
+
+void uwp::MainPage::click900(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	richEditBox->Document->Selection->CharacterFormat->Weight = 900;
+}
+
+//end of weight text
+
+void uwp::MainPage::OnClickLink(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	
+	ITextSelection^ textS = richEditBox->Document->Selection;
+	if (textS != nullptr) {
+		
+		//try {
+			Uri^ xd = ref new Uri("https://google.com");
+			textS->Text = xd->DisplayUri;
+		/*}
+		catch (Platform::InvalidArgumentException^ ee) {
+			errormsg->Text = ee->Message;
+			error_dialog->ShowAsync();
+			
+		}
+		*/
+	}
+}
+
+
+void uwp::MainPage::OnClickRedo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (richEditBox->Document->CanRedo() == true) {
+		richEditBox->Document->Redo();
+	}
+	
+}
+
+
+void uwp::MainPage::OnClickUndo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (richEditBox->Document->CanUndo() == true) {
+		richEditBox->Document->Undo();
 	}
 }

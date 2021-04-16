@@ -37,5 +37,17 @@ namespace uwp
 		void OnClickBackColor(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickIncrease(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickDecrease(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void click100(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void click200(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void click300(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void click400(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void click500(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void click600(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void click700(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void click800(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void click900(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnClickLink(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnClickRedo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnClickUndo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }
