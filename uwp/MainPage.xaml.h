@@ -23,7 +23,6 @@ namespace uwp
 		void a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickPrm1(Windows::UI::Xaml::Controls::ContentDialog^ sender, Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs^ args);
-		
 		void OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickOpenPopup(Windows::UI::Xaml::Controls::ContentDialog^ sender, Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs^ args);
@@ -49,5 +48,9 @@ namespace uwp
 		void OnClickLink(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickRedo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnClickUndo(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		
+		void OnClickAddTab(Microsoft::UI::Xaml::Controls::TabView^ sender, Platform::Object^ args);
+		void TabClose(Microsoft::UI::Xaml::Controls::TabView^ sender, Microsoft::UI::Xaml::Controls::TabViewTabCloseRequestedEventArgs^ args);
+		
 	};
 }

@@ -21,8 +21,8 @@ using namespace Windows::UI::Xaml::Navigation;
 
 using namespace Windows::Storage;
 using namespace concurrency;
-
 using namespace Windows::UI::Text;
+using namespace Microsoft::UI::Xaml::Controls;
 
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
@@ -694,4 +694,19 @@ void uwp::MainPage::OnClickUndo(Platform::Object^ sender, Windows::UI::Xaml::Rou
 	if (richEditBox->Document->CanUndo() == true) {
 		richEditBox->Document->Undo();
 	}
+}
+
+
+void uwp::MainPage::OnClickAddTab(Microsoft::UI::Xaml::Controls::TabView^ sender, Platform::Object^ args)
+{
+	//Microsoft::UI::Xaml::Controls::TabViewItem^ tab = ref new Microsoft::UI::Xaml::Controls::TabViewItem();
+	//tab->Header = "baxfsd";
+	sender->TabItems->SetAt(1, args); 
+}
+
+
+void uwp::MainPage::TabClose(Microsoft::UI::Xaml::Controls::TabView^ sender, Microsoft::UI::Xaml::Controls::TabViewTabCloseRequestedEventArgs^ args)
+{
+	
+	sender->TabItems->RemoveAt(0);
 }

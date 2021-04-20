@@ -15,7 +15,7 @@
     <Grid>
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="103" Margin="244,174,0,0" Text="Name file" TextWrapping="Wrap" VerticalAlignment="Top" Width="733" FontSize="48" FontWeight="Normal"/>
-        <Button x:Name="button" Content="tstbutton" Height="49" Margin="17,451,0,0" VerticalAlignment="Top" Width="150" FontSize="24" Click="a"/>
+        <Button x:Name="button" Content="tstbutton" Height="49" Margin="25,451,0,0" VerticalAlignment="Top" Width="150" FontSize="24" Click="a"/>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="744,164,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="176" Width="253" PlaceholderText="write something" AcceptsReturn="True" Opacity="0.995" InputScope="Default" ToolTipService.ToolTip="old editor"/>
         <Border BorderThickness="1" BorderBrush="Black" d:IsHidden="True"/>
         <AppBarButton x:Name="appBarButton" Height="63" Icon="Page" Label="New file (?" Margin="57,124,0,0" Width="88" RenderTransformOrigin="0.513,0.561">
@@ -114,7 +114,7 @@
                 <TextBox x:Name="filename2"/>
             </StackPanel>
         </ContentDialog>
-        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="914,109,0,0" VerticalAlignment="Top" Width="100" Maximum="5" ToolTipService.ToolTip="Each number contains the text of you copy"/>
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="896,10,0,0" VerticalAlignment="Top" Width="100" Maximum="5" ToolTipService.ToolTip="Each number contains the text of you copy"/>
         <TextBlock x:Name="dtext" HorizontalAlignment="Left" Height="174" Margin="1037,164,0,0" Text="debug text" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
         <RichEditBox x:Name="richEditBox" HorizontalAlignment="Left" Height="357" Margin="244,352,0,0" VerticalAlignment="Top" Width="753" PlaceholderText="write something">
             <RichEditBox.BorderBrush>
@@ -129,7 +129,7 @@
 
         </RichEditBox>
         <ToggleSwitch x:Name="mode_pro" Header="Mode mew editor" Margin="34,206,0,0" VerticalAlignment="Top" IsOn="True"/>
-        <Slider x:Name="sliderUnd" HorizontalAlignment="Left" Margin="402,109,0,0" VerticalAlignment="Top" Width="100" Maximum="20" TickPlacement="Inline" ToolTipService.ToolTip="Underline type (?"/>
+        <Slider x:Name="sliderUnd" HorizontalAlignment="Left" Margin="404,10,0,0" VerticalAlignment="Top" Width="100" Maximum="20" TickPlacement="Inline" ToolTipService.ToolTip="Underline type (?"/>
         <AppBarButton x:Name="appBarButton14" Icon="Font" Label="font?" Margin="43,379,0,0">
             <AppBarButton.Flyout>
                 <Flyout>
@@ -148,9 +148,29 @@
             </StackPanel>
         </ContentDialog>
         <ToggleSwitch x:Name="new_fileTS" Header="New file 2" Margin="32,270,0,0" VerticalAlignment="Top" IsOn="True"/>
-        <AutoSuggestBox QueryIcon="Accept" x:Name="autoSuggestBox" HorizontalAlignment="Left" Margin="245,282,0,0" Width="231">
+
+
+        <Custom:TabView x:Name="tab" Margin="271,120,0,0" Width="600" AddTabButtonClick="OnClickAddTab" TabCloseRequested="TabClose">
+            <Custom:TabViewItem Header="this">
+                <Custom:TabViewItem.IconSource>
+                    <Custom:SymbolIconSource Symbol="AddFriend"></Custom:SymbolIconSource>
+                </Custom:TabViewItem.IconSource>
+            </Custom:TabViewItem>
             
-        </AutoSuggestBox>
+            
+            </Custom:TabView>
+            <!--
+        <Button x:Name="buttonp" Content="Button" Margin="126,391,0,0" VerticalAlignment="Top">
+            <Button.Resources>
+                <Custom:TeachingTip
+                    Target="{x:Bind buttonp}"
+            Title="abeccedff"
+            Subtitle="lorenso ipsumeo aoaoaoaoaooa 123495960 texto culerou aoaooaaoaoao camloo">
+                    
+                </Custom:TeachingTip>
+            </Button.Resources>
+        </Button>
+        -->
 
 
     </Grid>
