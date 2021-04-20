@@ -97,7 +97,7 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 								//good
 								textBlock->Text = file->Name;
 								directorio->Text = file->Path;
-
+								mainfilename = file->Name;
 
 							}
 							else {
@@ -206,6 +206,7 @@ void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml:
 				create_task(file->OpenAsync(FileAccessMode::Read)).then([file, this](Streams::IRandomAccessStream^ randd) {
 					
 					richEditBox->Document->LoadFromStream(TextSetOptions::FormatRtf,randd);
+					mainfilename = file->Name;
 					
 					});
 			}
@@ -701,12 +702,13 @@ void uwp::MainPage::OnClickAddTab(Microsoft::UI::Xaml::Controls::TabView^ sender
 {
 	//Microsoft::UI::Xaml::Controls::TabViewItem^ tab = ref new Microsoft::UI::Xaml::Controls::TabViewItem();
 	//tab->Header = "baxfsd";
-	sender->TabItems->SetAt(1, args); 
+	//sender->TabItems->SetAt(1, args); 
+	sender->TabItems->Append(mainfilename);
+	
 }
 
 
 void uwp::MainPage::TabClose(Microsoft::UI::Xaml::Controls::TabView^ sender, Microsoft::UI::Xaml::Controls::TabViewTabCloseRequestedEventArgs^ args)
 {
-	
-	sender->TabItems->RemoveAt(0);
+	sender->TabItems->RemoveAt(sender->SelectedIndex);
 }

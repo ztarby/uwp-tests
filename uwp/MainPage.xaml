@@ -156,9 +156,9 @@
                     <Custom:SymbolIconSource Symbol="AddFriend"></Custom:SymbolIconSource>
                 </Custom:TabViewItem.IconSource>
             </Custom:TabViewItem>
-            
-            
-            </Custom:TabView>
+        
+
+        </Custom:TabView>
             <!--
         <Button x:Name="buttonp" Content="Button" Margin="126,391,0,0" VerticalAlignment="Top">
             <Button.Resources>
