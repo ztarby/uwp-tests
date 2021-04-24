@@ -8,7 +8,6 @@
 #include "MainPage.g.h"
 
 
-
 namespace uwp
 {
 	/// <summary>

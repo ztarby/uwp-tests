@@ -39,14 +39,24 @@ String^ pp[sizeOfpp];
 unsigned int counter = 0;
 StorageFile^ f;
 
+//auto files = ref new Platform::Collections::Vector<StorageFile^ >;
+ //StorageFile^ files[10];
+//unsigned int counterOfFile = 0;
+
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
+	auto tst = ref new Platform::Collections::Vector<String^>;
+	tst->Append("HIoaooa");
+	tst->Append("HIoaooa");
+	//String^ tst[5] = {"0","1","2","3","4"};
+	
+	textBox1->Text = tst->GetAt(tab->TabItems->Size);
 	/*
 	Windows::UI::Color^ a = pickcolor->Color;
 	SolidColorBrush^ aa = a;
 	//textBox1->Background = pickcolor->Color;
 	richEditBox->BorderBrush = aa;
-	*/ 
+	
 	ITextSelection^ s = richEditBox->Document->Selection;
 	//TextSetOptions a; 
 	//ITextDocument^ ss = richEditBox->Document; ss->SetText(a,"aaa");
@@ -57,7 +67,7 @@ void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventAr
 
 	ITextCharacterFormat^ txt = s->CharacterFormat;
 	txt->ForegroundColor = pickcolor->Color;
-	
+	*/ 
 }
 
 
@@ -98,6 +108,8 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 								textBlock->Text = file->Name;
 								directorio->Text = file->Path;
 								mainfilename = file->Name;
+
+								tab->TabItems->Append(file->Name);
 
 							}
 							else {
@@ -208,6 +220,9 @@ void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml:
 					richEditBox->Document->LoadFromStream(TextSetOptions::FormatRtf,randd);
 					mainfilename = file->Name;
 					
+					tab->TabItems->Append(file->Name);
+					//files->Append(file);
+
 					});
 			}
 			else {
@@ -677,6 +692,7 @@ void uwp::MainPage::OnClickLink(Platform::Object^ sender, Windows::UI::Xaml::Rou
 			
 		}
 		*/
+			
 	}
 }
 
@@ -703,7 +719,9 @@ void uwp::MainPage::OnClickAddTab(Microsoft::UI::Xaml::Controls::TabView^ sender
 	//Microsoft::UI::Xaml::Controls::TabViewItem^ tab = ref new Microsoft::UI::Xaml::Controls::TabViewItem();
 	//tab->Header = "baxfsd";
 	//sender->TabItems->SetAt(1, args); 
-	sender->TabItems->Append(mainfilename);
+	
+	sender->TabItems->Append("abc");
+	
 	
 }
 
