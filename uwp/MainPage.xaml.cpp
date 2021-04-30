@@ -30,7 +30,7 @@ using namespace Microsoft::UI::Xaml::Controls;
 MainPage::MainPage()
 {
 	InitializeComponent();
-	
+	this->NavigationCacheMode = Windows::UI::Xaml::Navigation::NavigationCacheMode::Enabled;
 }
 
 String^ mainfilename = "null";
@@ -39,19 +39,25 @@ String^ pp[sizeOfpp];
 unsigned int counter = 0;
 StorageFile^ f;
 
+
+StorageFile^ files[9];
+
 //auto files = ref new Platform::Collections::Vector<StorageFile^ >;
  //StorageFile^ files[10];
-//unsigned int counterOfFile = 0;
+unsigned int counterOfFile = 0;
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	auto tst = ref new Platform::Collections::Vector<String^>;
-	tst->Append("HIoaooa");
-	tst->Append("HIoaooa");
-	//String^ tst[5] = {"0","1","2","3","4"};
+	TabViewItem^ tst = ref new TabViewItem();
+	tst->Content  =  Frame->Navigate(Interop::TypeName(BlankPage::typeid));
 	
-	textBox1->Text = tst->GetAt(tab->TabItems->Size);
+	tst->Header = "abcd";
+	
+	tab->TabItems->Append(tst);
 	/*
+	* Test button for code
+	* Down are trash lines
+	* 
 	Windows::UI::Color^ a = pickcolor->Color;
 	SolidColorBrush^ aa = a;
 	//textBox1->Background = pickcolor->Color;
@@ -96,7 +102,7 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
          p->FileTypeChoices->Insert("text file and more (.txt , .rtf)", x);
 		 
 		create_task(p->PickSaveFileAsync()).then([this,tempptext](StorageFile^ file) {
-			if (file != nullptr) {
+			if (file != nullptr || counterOfFile <= 9) {
 				f = file;
 				CachedFileManager::DeferUpdates(file);
 				if (new_fileTS->IsOn == false) {
@@ -109,7 +115,9 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 								directorio->Text = file->Path;
 								mainfilename = file->Name;
 
+								files[counterOfFile] = file;
 								tab->TabItems->Append(file->Name);
+								counterOfFile++;
 
 							}
 							else {
@@ -131,7 +139,7 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 			}
 			else {
 				//no file
-				errormsg->Text = "Operation cancelled";
+				errormsg->Text = "Operation cancelled or the counter or files is max";
 				error_dialog->ShowAsync();
 				
 			}
@@ -182,9 +190,10 @@ void uwp::MainPage::OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml:
 	else {
 		if (f != nullptr) {
 			try {
+				//files[tab->SelectedIndex]
 				create_task(f->OpenAsync(FileAccessMode::ReadWrite)).then([this](Streams::IRandomAccessStream^ randd) {
 					richEditBox->Document->SaveToStream(TextGetOptions::FormatRtf, randd);
-
+					
 					});
 			}
 			catch (Exception^ e) {
@@ -211,22 +220,32 @@ void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml:
 		opn->FileTypeFilter->Append(".rtf");
 
 		create_task(opn->PickSingleFileAsync()).then([this](StorageFile^ file) {
-			if (file) {
-				f = file;
+			if (file || counterOfFile <= 9) {
+				
 				textBlock->Text = file->Name;
 				directorio->Text = file->Path;
 				create_task(file->OpenAsync(FileAccessMode::Read)).then([file, this](Streams::IRandomAccessStream^ randd) {
+					f = file;
+
+					files[counterOfFile] = file;
+				
 					
+						tab->TabItems->Append(file->Name);
+						counterOfFile++;
+					
+
 					richEditBox->Document->LoadFromStream(TextSetOptions::FormatRtf,randd);
 					mainfilename = file->Name;
 					
-					tab->TabItems->Append(file->Name);
+					
 					//files->Append(file);
 
 					});
 			}
 			else {
-				textBlock->Text = "error, cancelled operation";
+				//textBlock->Text = "error, cancelled operation";
+				errormsg->Text = "Operation cancelled or the counter of files is max";
+				error_dialog->ShowAsync();
 			}
 			});
 	}

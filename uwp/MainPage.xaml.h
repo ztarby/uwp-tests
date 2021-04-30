@@ -7,6 +7,7 @@
 
 #include "MainPage.g.h"
 
+#include"BlankPage.xaml.h"
 
 namespace uwp
 {

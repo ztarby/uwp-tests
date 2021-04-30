@@ -6,6 +6,7 @@
 #pragma once
 
 #include "BlankPage.g.h"
+#include "MainPage.xaml.h"
 
 namespace uwp
 {
@@ -17,5 +18,7 @@ namespace uwp
 	{
 	public:
 		BlankPage();
+	private:
+		void Return(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

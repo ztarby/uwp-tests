@@ -25,3 +25,10 @@ BlankPage::BlankPage()
 {
 	InitializeComponent();
 }
+
+
+void uwp::BlankPage::Return(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	this->Frame->Navigate(Interop::TypeName(MainPage::typeid));
+	
+}

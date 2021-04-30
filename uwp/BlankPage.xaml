@@ -9,10 +9,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="117" Margin="614,154,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" FontSize="72"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="104" Margin="392,383,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="741" FontSize="48"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Height="116" Margin="392,592,0,0" VerticalAlignment="Top" Width="741" FontSize="48"/>
-        <Button x:Name="button" Content="Button" Height="110" Margin="0,752,0,0" VerticalAlignment="Top" Width="388" FontSize="48" HorizontalAlignment="Center"/>
+        
+        <AppBarButton x:Name="appBarButton" Height="68" Icon="Undo" Label="return" Margin="92,63,0,0" Width="84" Click="Return"/>
+       <InkToolbar  x:Name="inkToolbar" TargetInkCanvas="{x:Bind inkCanvas}" />
+        <StackPanel Margin="246,335,288,158"  Background="{ThemeResource SystemChromeWhiteColor}" >
+           
+            
+    <InkCanvas x:Name="inkCanvas" />
+        </StackPanel>
 
     </Grid>
 </Page>
