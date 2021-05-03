@@ -52,5 +52,6 @@ namespace uwp
 		void OnClickAddTab(Microsoft::UI::Xaml::Controls::TabView^ sender, Platform::Object^ args);
 		void TabClose(Microsoft::UI::Xaml::Controls::TabView^ sender, Microsoft::UI::Xaml::Controls::TabViewTabCloseRequestedEventArgs^ args);
 		
+		void OnSelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::SelectionChangedEventArgs^ e);
 	};
 }

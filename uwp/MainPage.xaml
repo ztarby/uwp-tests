@@ -148,12 +148,8 @@
         <ToggleSwitch x:Name="new_fileTS" Header="New file 2" Margin="32,270,0,0" VerticalAlignment="Top" IsOn="True"/>
 
 
-        <Custom:TabView x:Name="tab" IsAddTabButtonVisible="False" TabWidthMode="SizeToContent"  Margin="245,124,0,0" Width="600" AddTabButtonClick="OnClickAddTab" TabCloseRequested="TabClose">
-            <Custom:TabViewItem IsClosable="False"> Header="this">
-                <Custom:TabViewItem.IconSource>
-                    <Custom:SymbolIconSource Symbol="AddFriend"></Custom:SymbolIconSource>
-                </Custom:TabViewItem.IconSource>
-            </Custom:TabViewItem>
+        <Custom:TabView x:Name="tab" IsAddTabButtonVisible="False" TabWidthMode="SizeToContent"  Margin="245,124,0,0" Width="600" AddTabButtonClick="OnClickAddTab" TabCloseRequested="TabClose" SelectionChanged="OnSelectionChanged">
+         
 
 
         </Custom:TabView>

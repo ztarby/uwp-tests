@@ -41,15 +41,17 @@ StorageFile^ f;
 
 
 StorageFile^ files[9];
+unsigned int counterOfFile = 0;
 
 //auto files = ref new Platform::Collections::Vector<StorageFile^ >;
  //StorageFile^ files[10];
-unsigned int counterOfFile = 0;
+
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
+	
 	TabViewItem^ tst = ref new TabViewItem();
-	tst->Content  =  Frame->Navigate(Interop::TypeName(BlankPage::typeid));
+	//tst->Content  = Frame->Navigate(Interop::TypeName(BlankPage::typeid));
 	
 	tst->Header = "abcd";
 	
@@ -190,8 +192,8 @@ void uwp::MainPage::OnClickSaveFile(Platform::Object^ sender, Windows::UI::Xaml:
 	else {
 		if (f != nullptr) {
 			try {
-				//files[tab->SelectedIndex]
-				create_task(f->OpenAsync(FileAccessMode::ReadWrite)).then([this](Streams::IRandomAccessStream^ randd) {
+				//f
+				create_task(files[tab->SelectedIndex]->OpenAsync(FileAccessMode::ReadWrite)).then([this](Streams::IRandomAccessStream^ randd) {
 					richEditBox->Document->SaveToStream(TextGetOptions::FormatRtf, randd);
 					
 					});
@@ -234,7 +236,7 @@ void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml:
 						counterOfFile++;
 					
 
-					richEditBox->Document->LoadFromStream(TextSetOptions::FormatRtf,randd);
+					 richEditBox->Document->LoadFromStream(TextSetOptions::FormatRtf,randd);
 					mainfilename = file->Name;
 					
 					
@@ -748,4 +750,17 @@ void uwp::MainPage::OnClickAddTab(Microsoft::UI::Xaml::Controls::TabView^ sender
 void uwp::MainPage::TabClose(Microsoft::UI::Xaml::Controls::TabView^ sender, Microsoft::UI::Xaml::Controls::TabViewTabCloseRequestedEventArgs^ args)
 {
 	sender->TabItems->RemoveAt(sender->SelectedIndex);
+}
+
+
+void uwp::MainPage::OnSelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::SelectionChangedEventArgs^ e)
+{
+	if (files[tab->SelectedIndex] != nullptr) {
+		//put file text on richtextbox
+		create_task(files[tab->SelectedIndex]->OpenAsync(FileAccessMode::Read)).then([this](Streams::IRandomAccessStream^ randd) {
+			richEditBox->Document->LoadFromStream(TextSetOptions::FormatRtf, randd);
+			});
+		textBlock->Text = files[tab->SelectedIndex]->Name;
+		directorio->Text = files[tab->SelectedIndex]->Path;
+	} 
 }
