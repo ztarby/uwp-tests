@@ -49,13 +49,8 @@ unsigned int counterOfFile = 0;
 
 void uwp::MainPage::a(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	
-	TabViewItem^ tst = ref new TabViewItem();
-	//tst->Content  = Frame->Navigate(Interop::TypeName(BlankPage::typeid));
-	
-	tst->Header = "abcd";
-	
-	tab->TabItems->Append(tst);
+	String^ tst = tab->SelectedIndex + "";
+	dtext->Text = tst;
 	/*
 	* Test button for code
 	* Down are trash lines
@@ -118,7 +113,10 @@ void uwp::MainPage::ClickA(Platform::Object^ sender, Windows::UI::Xaml::RoutedEv
 								mainfilename = file->Name;
 
 								files[counterOfFile] = file;
-								tab->TabItems->Append(file->Name);
+								TabViewItem^ tst = ref new TabViewItem();
+								tst->Header = file->Name;
+								tst->IsClosable = false;
+								tab->TabItems->Append(tst);
 								counterOfFile++;
 
 							}
@@ -232,7 +230,10 @@ void uwp::MainPage::OnClickOpenFile(Platform::Object^ sender, Windows::UI::Xaml:
 					files[counterOfFile] = file;
 				
 					
-						tab->TabItems->Append(file->Name);
+					TabViewItem^ tst = ref new TabViewItem();
+					tst->Header = file->Name;
+					tst->IsClosable = false;
+					tab->TabItems->Append(tst);
 						counterOfFile++;
 					
 
@@ -750,6 +751,8 @@ void uwp::MainPage::OnClickAddTab(Microsoft::UI::Xaml::Controls::TabView^ sender
 void uwp::MainPage::TabClose(Microsoft::UI::Xaml::Controls::TabView^ sender, Microsoft::UI::Xaml::Controls::TabViewTabCloseRequestedEventArgs^ args)
 {
 	sender->TabItems->RemoveAt(sender->SelectedIndex);
+
+	
 }
 
 
@@ -763,4 +766,16 @@ void uwp::MainPage::OnSelectionChanged(Platform::Object^ sender, Windows::UI::Xa
 		textBlock->Text = files[tab->SelectedIndex]->Name;
 		directorio->Text = files[tab->SelectedIndex]->Path;
 	} 
+}
+
+
+void uwp::MainPage::OnClickCloseFile(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (tab->SelectedIndex > -1) {
+		
+		files[tab->SelectedIndex] = nullptr;
+		directorio->Text = "null???";
+		tab->TabItems->RemoveAt(tab->SelectedIndex);
+		
+	}
 }

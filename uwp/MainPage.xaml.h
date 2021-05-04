@@ -53,5 +53,6 @@ namespace uwp
 		void TabClose(Microsoft::UI::Xaml::Controls::TabView^ sender, Microsoft::UI::Xaml::Controls::TabViewTabCloseRequestedEventArgs^ args);
 		
 		void OnSelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::SelectionChangedEventArgs^ e);
+		void OnClickCloseFile(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

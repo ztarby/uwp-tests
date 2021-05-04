@@ -28,6 +28,8 @@
 
                     <MenuFlyoutItem Text="save file" Click="OnClickSaveFile"/>
 
+                    <MenuFlyoutItem Text="close file" Click="OnClickCloseFile"></MenuFlyoutItem>
+
                 </MenuFlyout>
             </AppBarButton.Flyout>
 
